@@ -11,7 +11,7 @@ sq_training_data = [
     ([.9], [.81])
 ]
 sqn = NeuralNet(1, 20, 1)
-sqn.train(sq_training_data)
+sqn.train(sq_training_data, print_interval=50)
 
 print()
 print(sqn.test_with_expected(sq_training_data))
