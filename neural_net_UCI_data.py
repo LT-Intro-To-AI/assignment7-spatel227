@@ -13,8 +13,24 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
         tuple of input list and output list
     """
     tokens = line.split(",")
-    out = int(tokens[0])
-    output = [1 if out == 1 else 0.5 if out == 2 else 1]
+    out = (tokens[16])
+
+    #output = [0 if out == 0,0,0]
+    if out == [0,0,0]:
+        output = 0
+    elif out == [0,0,1]:
+        output = 1
+    elif out == [0,1,0]:
+        output == 2
+    elif out == [0,1,1]:
+        output == 3
+    elif out == [1,0,0]:
+        output == 4
+    elif out == [1,0,1]:
+        output == 5
+    elif out == [1,1,0]:
+        output == 6
+    #output = [1 if out == 1 else 0.5 if out == 2 else 1]
 
     inpt = [float(x) for x in tokens[1:]]
     return (inpt, output)
@@ -46,7 +62,7 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
     return data
 
 
-with open("wine_data.txt", "r") as f:
+with open("Dry_Bean_Dataset.csv", "r") as f:
     training_data = [parse_line(line) for line in f.readlines() if len(line) > 4]
 
 #for line in training_data:
