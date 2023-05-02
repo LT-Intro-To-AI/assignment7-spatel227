@@ -14,7 +14,7 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
     """
     tokens = line.split(",")
     out = (tokens[16])
-
+    output = [0,0,0]
     #output = [0 if out == 0,0,0]
     if out == [0,0,0]:
         output = 0
@@ -32,7 +32,7 @@ def parse_line(line: str) -> Tuple[List[float], List[float]]:
         output == 6
     #output = [1 if out == 1 else 0.5 if out == 2 else 1]
 
-    inpt = [float(x) for x in tokens[1:]]
+    inpt = [float(x) for x in tokens[:16]]
     return (inpt, output)
 
 
@@ -63,6 +63,7 @@ def normalize(data: List[Tuple[List[float], List[float]]]):
 
 
 with open("Dry_Bean_Dataset.csv", "r") as f:
+    f.readline()
     training_data = [parse_line(line) for line in f.readlines() if len(line) > 4]
 
 #for line in training_data:
@@ -76,7 +77,7 @@ print(len(test_data))
 # for line in td:
 #     print(line)
 
-nn = NeuralNet(13, 3, 1)
+nn = NeuralNet(16, 3, 3)
 #nn.train(td, iters=100_000, print_interval=1000, learning_rate=0.1)
 nn.train(train_data, learning_rate=.1)
 
